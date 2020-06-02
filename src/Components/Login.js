@@ -26,17 +26,19 @@ class Login extends React.Component{
         this.setState({ submitted: true });
         const { staffId, password } = this.state;
 
-        if(staffId === "admin" && password === "admin123"){
-            console.log("Success");
-            this.setState({ 
-                state: 'LOGIN_SUCCESS'
-            });
-        }
-        else{
-            console.log("Fail");
-            this.setState({ 
-                state: 'LOGIN_FAIL'
-            });
+        if(staffId && password){
+            if(staffId === "admin" && password === "admin123"){
+                console.log("Success");
+                this.setState({ 
+                    state: 'LOGIN_SUCCESS'
+                });
+            }
+            else{
+                console.log("Fail");
+                this.setState({ 
+                    state: 'LOGIN_FAIL'
+                });
+            }
         }
     }
 
