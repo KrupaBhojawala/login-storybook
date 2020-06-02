@@ -10,7 +10,7 @@ export default {
 };
 
 export const loginData = {
-    username: '',
+    staffId: '',
     password: '',
     state: 'LOGIN_DEFAULT',
     updatedAt: new Date(),
