@@ -44,77 +44,45 @@ class Login extends React.Component{
 
     render(){
         const { staffId, password, state, submitted } = this.state;
-        switch (state) {
-            case 'LOGIN_SUCCESS':
-                return(
-                    <div style={{color:'green', textAlign:'center'}} >
-                            Login Sucessfull
+        return(<>
+            {state == "LOGIN_SUCCESS"?(
+                <div style={{color:'green', textAlign:'center'}} >
+                    Login Sucessfull
+                </div>
+            ):[(state == "LOGIN_FAIL"?(
+                <div style={{color:'red', textAlign:'center'}} >
+                    Invalid Username and Password!!
+                </div>):null
+            ),(
+                <div className="col-md-6 col-md-offset-3" style={{color:'white', textAlign:'center'}} >
+                <h2>Login</h2>
+                <form name="form" className="form-horizontal" onSubmit={this.handleSubmit}>
+                    <div className={'form-group' + (submitted && !staffId ? ' has-error' : '')}>
+                        <label htmlFor="staffId" className="control-label col-sm-3" >Username</label>
+                        <div className="col-md-9">
+                            <input type="text" className="form-control" name="staffId" value={staffId} onChange={this.handleChange} />
+                            {submitted && !staffId &&
+                                <div className="help-block">Username is required</div>
+                            }
+                        </div>
                     </div>
-                )
-            
-            case 'LOGIN_FAIL':
-                return(<>
-                    <div style={{color:'red', textAlign:'center'}} >
-                            Invalid Username and Password!!
+                    <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
+                        <label htmlFor="password" className="control-label col-sm-3" >Password</label>
+                        <div className="col-md-9">
+                        <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
+                        {submitted && !password &&
+                            <div className="help-block">Password is required</div>
+                        }
+                        </div>
                     </div>
-                    <div className="col-md-6 col-md-offset-3" style={{color:'white', textAlign:'center'}} >
-                        <h2>Login</h2>
-                        <form name="form" className="form-horizontal" onSubmit={this.handleSubmit}>
-                            <div className={'form-group' + (submitted && !staffId ? ' has-error' : '')}>
-                                <label htmlFor="staffId" className="control-label col-sm-3" >Username</label>
-                                <div className="col-md-9">
-                                    <input type="text" className="form-control" name="staffId" value={staffId} onChange={this.handleChange} />
-                                    {submitted && !staffId &&
-                                        <div className="help-block">Username is required</div>
-                                    }
-                                </div>
-                            </div>
-                            <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                                <label htmlFor="password" className="control-label col-sm-3" >Password</label>
-                                <div className="col-md-9">
-                                <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                                {submitted && !password &&
-                                    <div className="help-block">Password is required</div>
-                                }
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <button className="btn btn-primary">Login</button>
-                            </div>
-                        </form>
-                    </div></>
-                )
-                
-            default :
-                return(
-                    <div className="col-md-6 col-md-offset-3" style={{color:'white', textAlign:'center'}} >
-                        <h2>Login</h2>
-                        <form name="form" className="form-horizontal" onSubmit={this.handleSubmit}>
-                            <div className={'form-group' + (submitted && !staffId ? ' has-error' : '')}>
-                                <label htmlFor="staffId" className="control-label col-sm-3" >Username</label>
-                                <div className="col-md-9">
-                                    <input type="text" className="form-control" name="staffId" value={staffId} onChange={this.handleChange} />
-                                    {submitted && !staffId &&
-                                        <div className="help-block">Username is required</div>
-                                    }
-                                </div>
-                            </div>
-                            <div className={'form-group' + (submitted && !password ? ' has-error' : '')}>
-                                <label htmlFor="password" className="control-label col-sm-3" >Password</label>
-                                <div className="col-md-9">
-                                <input type="password" className="form-control" name="password" value={password} onChange={this.handleChange} />
-                                {submitted && !password &&
-                                    <div className="help-block">Password is required</div>
-                                }
-                                </div>
-                            </div>
-                            <div className="form-group">
-                                <button className="btn btn-primary">Login</button>
-                            </div>
-                        </form>
+                    <div className="form-group">
+                        <button className="btn btn-primary">Login</button>
                     </div>
-                )
-    }
+                </form>
+            </div>
+            )]}
+            </>
+        )
     }
 }
 
